@@ -1,3 +1,4 @@
+import { randomInt } from '../helpers/randomInt/randomInt';
 import { ICard } from '../interfaces/card.interface';
 
 export class Deck {
@@ -54,7 +55,7 @@ export class Deck {
     const numCards = this.myDeck.length;
 
     while (iteration < numCards) {
-      const rand = this.randomInt(1, numCards - 1);
+      const rand = randomInt(1, numCards - 1);
       [this.myDeck[0], this.myDeck[rand]] = [this.myDeck[rand], this.myDeck[0]];
       iteration += 1;
     }
