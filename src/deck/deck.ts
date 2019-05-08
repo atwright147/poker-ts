@@ -49,7 +49,7 @@ export class Deck {
     this.shuffle();
   }
 
-  private shuffle() {
+  private shuffle(): void {
     let iteration = 0;
     const numCards = this.myDeck.length;
 
