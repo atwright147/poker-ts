@@ -5,7 +5,7 @@ import { Deck } from './deck';
 import * as randomHeleper from '../helpers/randomInt/randomInt';
 
 describe('Deck', () => {
-  const sandbox = sinon.sandbox.create();
+  const sandbox = sinon.createSandbox();
   let deck;
   const unshuffledDeck = [
     {
