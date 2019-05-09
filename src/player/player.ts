@@ -8,7 +8,7 @@ export class Player {
     this.myName = name;
   }
 
-  get hand() {
+  get hand(): ICard[] {
     return this.myHand;
   }
 
@@ -20,7 +20,7 @@ export class Player {
     this.myHand = this.myHand.concat(cards);
   }
 
-  get name() {
+  get name(): string {
     return this.myName;
   }
 }

@@ -29,7 +29,7 @@ export class Game {
     return players;
   }
 
-  get state() {
+  get state(): string {
     return JSON.stringify(this.deal(), null, 4);
   }
 }
