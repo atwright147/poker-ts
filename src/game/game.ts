@@ -13,11 +13,13 @@ export class Game {
     let iteration = 0;
     const players = [];
     const deck = new Deck();
+    deck.generate();
 
     while (iteration < this.numPlayers) {
-      const player = new Player(`Player ${iteration}`);
+      const player = new Player(`Player ${iteration + 1}`);
       player.hand = deck.hand;
       players.push(player);
+      iteration += 1;
     }
 
     return players;
