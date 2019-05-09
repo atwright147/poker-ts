@@ -26,7 +26,11 @@ export class Game {
     dealer.hand = deck.hand;
     players.push(dealer);
 
-    return players;
+    const table = [];
+    table.push(deck.card);
+    table.push(deck.card);
+
+    return { players, table };
   }
 
   get state(): string {
