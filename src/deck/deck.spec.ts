@@ -5,6 +5,7 @@ import { Deck } from './deck';
 import * as randomHeleper from '../helpers/randomInt/randomInt';
 
 describe('Deck', () => {
+  const sandbox = sinon.sandbox.create();
   let deck;
   const unshuffledDeck = [
     {
@@ -221,10 +222,66 @@ describe('Deck', () => {
     deck = new Deck();
   });
 
-  it('should return a full deck of 52 cards', () => {
-    const randomIntStub = sinon.stub(randomHeleper, 'randomInt').returns(0);
-    deck.generate();
-    expect(randomIntStub.callCount).to.equal(52);
-    expect(deck.all).to.deep.equal(unshuffledDeck);
+  afterEach(function () {
+    sandbox.restore();
+  });
+
+  describe('#generate', () => {
+    it('should generate a full deck of 52 cards', () => {
+      sandbox.stub(randomHeleper, 'randomInt').returns(0);
+      deck.generate();
+
+      expect(deck.all).to.deep.equal(unshuffledDeck);
+    });
+
+    it('should randomise all 52 cards', () => {
+      const randomIntStub = sandbox.stub(randomHeleper, 'randomInt').returns(0);
+      deck.generate();
+
+      expect(randomIntStub.callCount).to.equal(52);
+    });
+  });
+
+  describe('get all', () => {
+    it('should return a full deck of 52 cards', () => {
+      sandbox.stub(randomHeleper, 'randomInt').returns(0);
+      deck.generate();
+
+      expect(deck.all).to.deep.equal(unshuffledDeck);
+    });
+  });
+
+  describe('get hand', () => {
+    it('should return first 3 available cards', () => {
+      sandbox.stub(randomHeleper, 'randomInt').returns(0);
+      deck.generate();
+      deck.hand;
+
+      const expected = [
+        {
+          "suit": "clubs",
+          "card": "J"
+        },
+        {
+          "suit": "clubs",
+          "card": 10
+        },
+        {
+          "suit": "clubs",
+          "card": 9
+        },
+      ];
+      expect(deck.hand).to.deep.equal(expected);
+    });
+  });
+
+  describe('get card', () => {
+    it('should return the first available card', () => {
+      sandbox.stub(randomHeleper, 'randomInt').returns(0);
+      deck.generate();
+      deck.card;
+
+      expect(deck.card).to.deep.equal({ suit: 'clubs', card: 'K' });
+    });
   });
 });
