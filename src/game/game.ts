@@ -22,6 +22,10 @@ export class Game {
       iteration += 1;
     }
 
+    const dealer = new Player(`Dealer`);
+    dealer.hand = deck.hand;
+    players.push(dealer);
+
     return players;
   }
 
